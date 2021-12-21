@@ -45,6 +45,7 @@
 <?php 
 if(isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["password"])&& isset($_POST["address"]) )
 {
+    
     //prepare sql query etc to add a new user
     //make password hash
     //send query
