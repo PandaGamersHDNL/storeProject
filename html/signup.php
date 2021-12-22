@@ -43,9 +43,11 @@
                 <input type="submit" value="sign up">
                 <a href="./login.php">Already have an account?</a>
 <?php 
+include "db.php";
 if(isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["password"])&& isset($_POST["address"]) )
 {
-    
+    $db = new Database();
+    $db->addUser($_POST["username"], $_POST["email"], $_POST["password"], $_POST["address"]);
     //prepare sql query etc to add a new user
     //make password hash
     //send query
