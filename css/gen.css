@@ -6,6 +6,7 @@
     --HoverColorP: #089EAC;
     --HoverColorS: #40444B;
     --Textcolor: white;
+    --navTextColor: black;
     --BodyBackground: #202225;
     --HighlightColor: #EF4A25;
     --BoxBackground: #292B2F;
@@ -44,7 +45,7 @@ nav {
 }
 
 nav a {
-    color: var(--Textcolor);
+    color: var(--navTextColor);
     text-align: center;
     margin: 0;
     text-decoration: none;

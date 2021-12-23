@@ -28,7 +28,7 @@ class Database{
         $email = mysqli_real_escape_string($this->link, $email);
         $address = mysqli_real_escape_string($this->link, $address);
 
-        $query = "select email from users where email = '". $email . "';";
+        $query = "SELECT email FROM users WHERE email = '". $email . "';";
         $user = mysqli_query($this->link, $query) or die("add user failed");
         if ($user->num_rows == 0)
         {
@@ -42,6 +42,25 @@ class Database{
         }
         //mysqli_real_escape_string(link, string)
         //filter_var();
+    }
+
+    public function verifyUser(string $email, string $password)
+    {
+        $email = mysqli_real_escape_string($this->link, $email);
+        $query = "select username, email, address, password from users where email = '$email'; ";
+        $users = mysqli_query($this->link, $query) or die("get password failed");
+        if($users->num_rows > 0){
+            $user = mysqli_fetch_array($users);
+            $hash = $user["password"];
+            if(password_verify($password, $hash)){
+                include "session.php";
+                echo("login successful");
+                Session::setLogin($user["username"], $user["email"], $user["address"]);
+                return true;
+            } 
+        }
+        echo("Password or username is incorrect");
+        return false;
     }
 }
 

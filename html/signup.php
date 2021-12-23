@@ -11,22 +11,7 @@
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><h1>SOP </h1></li>
-                <li><div id="searchItems"> search:<input type="text" /> </div></li>
-                <li>login/ signup</li>
-                <li>cart</li>
-            </ul>
-        </nav>
-        <nav>
-            <ul>
-                <li>category1</li>
-                <li>category2</li>
-                <li>category3</li>
-                <li>category4</li>
-                <li>category5</li>
-        </nav>
+        <?php include "nav.php" ?>
     </header>
     <div class="container-fluid">
         
@@ -58,7 +43,6 @@ if(isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["password
         </div>
     </div>
 </body>
-</html>
 <script>
     function checkForm()
     {
@@ -77,3 +61,4 @@ if(isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["password
         return true;
     }
 </script>
+</html>

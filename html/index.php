@@ -11,22 +11,7 @@
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><h1>SOP </h1></li>
-                <li><div id="searchItems"> search:<input type="text" /> </div></li>
-                <li><a href="./login.php">login/ signup</a></li>
-                <li>cart</li>
-            </ul>
-        </nav>
-        <nav>
-            <ul>
-                <li>category1</li>
-                <li>category2</li>
-                <li>category3</li>
-                <li>category4</li>
-                <li>category5</li>
-        </nav>
+        <?php include "nav.php"?>
     </header>
     <div class="container-fluid">
         <!-- use this structure 

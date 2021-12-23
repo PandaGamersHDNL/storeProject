@@ -11,7 +11,7 @@ This is a store created with for school
         email varchar(255),
         password varchar(255),
         address varchar(255),
-        bAdmin BOOL,
+        bAdmin int,
         PRIMARY KEY (userID)
     );
     CREATE TABLE products (

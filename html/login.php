@@ -15,49 +15,54 @@
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><h1>SOP </h1></li>
-                <li><div id="searchItems"> search:<input type="text" /> </div></li>
-                <li>login/ signup</li>
-                <li>cart</li>
-            </ul>
-        </nav>
-        <nav>
-            <ul>
-                <li>category1</li>
-                <li>category2</li>
-                <li>category3</li>
-                <li>category4</li>
-                <li>category5</li>
-        </nav>
+        <?php include "nav.php"?>
     </header>
     <div class="container-fluid">
         
         <div class="homeBox">
-            <form  onsubmit="" >
-                <label for="username">username</label>
-                <input type="text" name="username"/><br />
+            <form  onsubmit="checkForm()" method="POST" >
+                <label for="email">email</label>
+                <input type="text" name="email" id="email"/><br />
                 <label for="password">password</label>
-                <input type="text" name="password" /><br />
+                <input type="text" name="password" id="password"/><br />
                 <input type="submit" value="login" />
-                <a href="./signup.php">sign up</a>
+                <a href="./signup.php">sign up</a><br />
+                <?php
+                include "db.php";
+
+                    if(isset($_POST["email"], $_POST["password"])  && $_POST["email"] != "" && $_POST["password"] != "")
+                    {
+                        $db = new Database();
+                        $db->verifyUser($_POST["email"], $_POST["password"]);
+                        /*if(){
+                            //set session vars on login
+                            //go to index page with session logged in
+                        } else
+                        {
+                            //show error message 
+                        }*/
+                    }
+                ?>
+
             </form>   
 
         </div>
     </div>
 </body>
-</html>
 <script>
     function checkForm()
     {
-        let list = ["username", "password"]
+        let list = ["email", "password"]
         for(let i of list){
-            if(document.getElementById(i).value == "")
+            let item = document.getElementById(i);
+            let errorText = "fill this bitch in"
+            if(item.value == "" || item.value == errorText)
             {
                 return false;
             }
+            console.log(i)
         }
         return true;
     }
 </script>
+</html>
