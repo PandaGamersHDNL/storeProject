@@ -2,6 +2,7 @@
     class Session{
     static public function checkLogin()
     {
+        @session_start();
         if(isset($_SESSION["username"], $_SESSION["email"], $_SESSION["address"]))
             return true;
         return false;

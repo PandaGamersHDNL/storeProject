@@ -33,9 +33,6 @@ if(isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["password
 {
     $db = new Database();
     $db->addUser($_POST["username"], $_POST["email"], $_POST["password"], $_POST["address"]);
-    //prepare sql query etc to add a new user
-    //make password hash
-    //send query
 }
 ?>
                 

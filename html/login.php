@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../css/reset.css" />
     <link rel="stylesheet" href="../css/bootstrap/bootstrap.css" />
     <link rel="stylesheet" href="../css/gen.css" /> 
-    <title>sop</title>
+    <title>SOP</title>
 </head>
 <body>
     <header>
