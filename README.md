@@ -14,19 +14,31 @@ This is a store created with for school
         bAdmin int,
         PRIMARY KEY (userID)
     );
+
+### to create
+
+    CREATE TABLE categories (
+        categoryID int NOT NULL AUTO_INCREMENT,
+        name varchar(32),
+        description varchar(255)
+        PRIMARY KEY (categoryID)
+    );
     CREATE TABLE products (
         productID int NOT NULL AUTO_INCREMENT,
-        naam varchar(32),
+        name varchar(32),
         stock int,
-        beschrijving varchar(255),
-        prijs float(),
-        imagePath varchar(255)
+        description varchar(255),
+        price float(),
+        imagePath varchar(255),
+        categoryID int not null,
+        FOREIGN KEY (categoryID) REFERENCES categories(categoryID),
         PRIMARY KEY (productID)
     );
-    CREATE TABLE bestellingen (
+
+    CREATE TABLE orders (
         userID int NOT NULL,
         productID int NOT NULL,
-        datum dateTime,
+        date dateTime,
         amount int,
         ?deliveryAdress? varchar(255),
         FOREIGN KEY (userID) REFERENCES users(userID),
