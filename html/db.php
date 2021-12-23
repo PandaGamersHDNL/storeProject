@@ -37,6 +37,8 @@ class Database{
                 VALUE ('". $username . "', '". $email . "', '" . $password . "', '" . $address  . "', FALSE)";
             mysqli_query($this->link, $query) or die("add user failed");
             echo "<br/>sign up successfull";
+            Session::setLogin($username, $email, $address);
+            header("location: /php-mysxl/storeProject/html/index.php");
         } else {
             echo "<br/>user already exists";
         }
