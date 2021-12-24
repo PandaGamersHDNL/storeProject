@@ -28,11 +28,11 @@
                 <input type="submit" value="login" />
                 <a href="./signup.php">sign up</a><br />
                 <?php
-                include "db.php";
 
                     if(isset($_POST["email"], $_POST["password"])  && $_POST["email"] != "" && $_POST["password"] != "")
                     {
                         $db = new Database();
+                        $db->checkAdmin();
                         $db->verifyUser($_POST["email"], $_POST["password"]);
                         /*if(){
                             //set session vars on login

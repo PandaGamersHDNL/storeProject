@@ -23,5 +23,17 @@
         session_unset();
     }
 
+    static public function checkAdmin()
+    {
+        if(isset($_SESSION["admin"]))
+        {
+            if($_SESSION["admin"])
+                return true;
+        }
+        return false;
+    }
+
+    //setAdmin()
+
     }
 ?>

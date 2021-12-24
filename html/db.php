@@ -65,6 +65,19 @@ class Database{
         echo("Password or username is incorrect");
         return false;
     }
+
+    public function checkAdmin(string $email = null)
+    {
+        $email = mysqli_real_escape_string($this->link, $email);
+        $query = "SELECT bAdmin FROM users WHERE email = '$email'; ";
+        $users = mysqli_query($this->link, $query) or die("get password failed");
+        if($users->num_rows > 0){
+            $user = mysqli_fetch_array($users);
+            return $user["bAdmin"] ? true : false;
+        }
+        //TODO error if you can't find user?
+        return false;
+    }
 }
 
 ?>

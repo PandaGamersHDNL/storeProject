@@ -15,6 +15,9 @@
 </header>
 <div class="homeBox">
     <?php
+
+        $db = new Database();
+        $db->checkAdmin();
         echo("<h2>username: ". $_SESSION["username"] . "</h2>");
         echo("<h2>email: ". $_SESSION["email"] . "</h2>");
         echo("<h2>address: ". $_SESSION["address"] . "</h2>");

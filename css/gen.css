@@ -82,7 +82,7 @@ nav>ul {
     z-index: 1;
 }
 
-#Projects:hover ul#DropDown {
+#user:hover ul#DropDown {
     display: block;
     width: 100%;
 }

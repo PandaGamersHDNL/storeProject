@@ -12,6 +12,7 @@
 <body>
     <header>
         <?php include "nav.php"?>
+        
     </header>
     <div class="container-fluid">
         <!-- use this structure 
