@@ -52,6 +52,17 @@
             printPage($_SESSION[$products . "Page"], $products);
         ?>
     </div>
+    <div class="homeBox">
+        <h2> categories</h2>
+        <?php 
+            include("products.php");
+            $categories = $db->getCategories();
+            if($categories != false)
+                Products::categoryTable($categories);
+            //printPage($_SESSION[$categories . "Page"], $products);
+        ?>
+    </div>
+    
 </body>
 
 </html>

@@ -15,6 +15,17 @@
         
     </header>
     <div class="container-fluid">
+        <?php
+        include "products.php";
+        $db = new Database();
+        $prod = $db->getProducts(1);
+        if($prod != false){
+            Products::printDiv($prod);
+        }
+        else{
+            echo $prod;
+        }
+        ?>
         <!-- use this structure 
         rows
             column
@@ -23,10 +34,6 @@
         
         
         -->
-        <div >
-
-
-        </div>
     </div>
 </body>
 </html>

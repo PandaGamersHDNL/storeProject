@@ -53,7 +53,7 @@
             //load cart amount (only not payed ones)
         ?>
         </li>
-        <li>cart</li>
+        <li><a href="/php-mysxl/storeProject/html/cart.php" > cart</a></li>
     </ul>
 </nav>
 <!-- TODO make check box list from this (join query) + add price filter (seperate file?) -->

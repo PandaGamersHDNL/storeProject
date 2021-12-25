@@ -15,35 +15,33 @@ This is a store created with for school
         PRIMARY KEY (userID)
     );
 
-### to create
-
     CREATE TABLE categories (
         categoryID int NOT NULL AUTO_INCREMENT,
         name varchar(32),
-        description varchar(255)
+        description varchar(255),
         PRIMARY KEY (categoryID)
     );
+
     CREATE TABLE products (
         productID int NOT NULL AUTO_INCREMENT,
         name varchar(32),
         stock int,
         description varchar(255),
-        price float(),
+        price float,
         imagePath varchar(255),
         categoryID int not null,
         FOREIGN KEY (categoryID) REFERENCES categories(categoryID),
         PRIMARY KEY (productID)
     );
 
+### to create
+
     CREATE TABLE orders (
         userID int NOT NULL,
         productID int NOT NULL,
         date dateTime,
         amount int,
-        ?deliveryAdress? varchar(255),
+        deliveryAdress varchar(255),
         FOREIGN KEY (userID) REFERENCES users(userID),
         FOREIGN KEY (productID) REFERENCES products(productID),
     );
-
-    add constraint to user table for emails
-        emails can't be the same

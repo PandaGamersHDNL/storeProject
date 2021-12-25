@@ -81,8 +81,12 @@ class Database{
 
     public function getUsers(int $page, int $perPage = 10)
     {
+        $page -=1;
         $page = filter_var($page, FILTER_VALIDATE_INT);
-        $query = "SELECT * FROM ( SELECT (ROW_NUMBER() over ()) as row, users.* FROM users) as t WHERE row BETWEEN ". (($page -1) * $perPage) + 1 . " and ". $page * $perPage  .";";
+        $perPage = filter_var($perPage, FILTER_VALIDATE_INT);
+
+        //$query = "SELECT * FROM ( SELECT (ROW_NUMBER() over ()) as row, users.* FROM users) as t WHERE row BETWEEN ". (($page -1) * $perPage) + 1 . " and ". $page * $perPage  .";";
+        $query = "SELECT * FROM users LIMIT $perPage OFFSET " . ($page * $perPage);
         $users = mysqli_query($this->link, $query) or die("get users failed");
         if ($users->num_rows > 0) {
             return $users;
@@ -90,7 +94,33 @@ class Database{
         return false;
     }
 
-    
+    public function getProducts(int $page, int $perPage = 10)
+    {
+        $page -=1;
+        $page = filter_var($page, FILTER_VALIDATE_INT);
+        $perPage = filter_var($perPage, FILTER_VALIDATE_INT);
+
+        //$query = "SELECT * FROM ( SELECT (ROW_NUMBER() over ()) as row, users.* FROM users) as t WHERE row BETWEEN ". (($page -1) * $perPage) + 1 . " and ". $page * $perPage  .";";
+        $query = "SELECT * FROM products LIMIT $perPage OFFSET " . ($page * $perPage);
+        $products = mysqli_query($this->link, $query) or die("get products failed");
+        //echo("<div class='homeBox'>" . var_dump($products) . "</div>");
+        if ($products->num_rows > 0) {
+            return $products;
+        }
+        return false;
+    }
+
+    public function getCategories()
+    {
+        $query = "SELECT * FROM categories";
+        $categories = mysqli_query($this->link, $query) or die("get users failed");
+        if ($categories->num_rows > 0)
+        {
+            return $categories;
+        }
+        return false;
+
+    }
 }
 
 ?>
