@@ -34,13 +34,6 @@
                         $db = new Database();
                         $db->checkAdmin();
                         $db->verifyUser($_POST["email"], $_POST["password"]);
-                        /*if(){
-                            //set session vars on login
-                            //go to index page with session logged in
-                        } else
-                        {
-                            //show error message 
-                        }*/
                     }
                 ?>
 

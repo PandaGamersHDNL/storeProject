@@ -44,3 +44,6 @@ This is a store created with for school
         FOREIGN KEY (userID) REFERENCES users(userID),
         FOREIGN KEY (productID) REFERENCES products(productID),
     );
+
+    add constraint to user table for emails
+        emails can't be the same

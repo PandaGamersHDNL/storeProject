@@ -78,6 +78,19 @@ class Database{
         //TODO error if you can't find user?
         return false;
     }
+
+    public function getUsers(int $page, int $perPage = 10)
+    {
+        $page = filter_var($page, FILTER_VALIDATE_INT);
+        $query = "SELECT * FROM ( SELECT (ROW_NUMBER() over ()) as row, users.* FROM users) as t WHERE row BETWEEN ". (($page -1) * $perPage) + 1 . " and ". $page * $perPage  .";";
+        $users = mysqli_query($this->link, $query) or die("get users failed");
+        if ($users->num_rows > 0) {
+            return $users;
+        }
+        return false;
+    }
+
+    
 }
 
 ?>

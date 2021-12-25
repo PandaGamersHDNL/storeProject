@@ -186,3 +186,17 @@ img {
 header::after {
     font-size: 1em;
 }   
+
+button > a{
+    text-decoration: none;
+    color: var(--navTextColor);
+}
+
+.selectedItem {
+    text-decoration: underline;
+}
+
+.users, th, td, tr {
+    border: 2px solid black;
+    padding: .5em;
+}
