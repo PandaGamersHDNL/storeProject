@@ -28,6 +28,7 @@
 
         static public function printDiv($products = null)
         {
+            //TODO add image
             while($product = mysqli_fetch_array($products)){
             echo("<div class='homeBox'>
             <h2>". $product["name"] ."</h2>

@@ -30,23 +30,25 @@
         } else {
             header("location: /php-mysxl/storeProject/html/index.php");
         }
+
+        
         ?>
-        <div class="homeBox">
         <?php
+        //user actions
             if(isset($_GET["Uid"],$_GET["Uadmin"],$_GET["Uusername"],$_GET["Uemail"], $_GET["Uaddress"]))
             {
                 $db = new Database();
                 if($_GET["Uid"] > 0)
                 {
                     $db->updateUser($_GET["Uid"], $_GET["Uemail"], $_GET["Uusername"], $_GET["Uaddress"], $_GET["Uadmin"]);
-                }else{
-                    echo("sheep");
-                    // needs password
-                    //$db->addUser($_GET["Uusername"], $_GET["Uaddress"], $_GET["Uadmin"]);
                 }
             }
+            if(isset($_GET["Udel"]) && $_GET["Udel"] > 0)
+            {
+                $db->delUser($_GET["Udel"]);
+            }
         ?>
-        </div>
+        
     <div class="homeBox">
         <h2> users</h2>
         <?php 
