@@ -18,8 +18,8 @@
     <?php 
         $users = "users";
         $products = "products";
-         if(Session::checkLogin() == true)
-         {
+        if(Session::checkLogin() == true)
+        {
             $db = new Database();
             if($db->checkAdmin($_SESSION["email"])  == false)
             {
@@ -27,10 +27,26 @@
             }
             $_SESSION[$users. "Page"] = 1;
             $_SESSION[$products . "Page"] = 1;
-         } else {
+        } else {
             header("location: /php-mysxl/storeProject/html/index.php");
-         }
-    ?>
+        }
+        ?>
+        <div class="homeBox">
+        <?php
+            if(isset($_GET["Uid"],$_GET["Uadmin"],$_GET["Uusername"],$_GET["Uemail"], $_GET["Uaddress"]))
+            {
+                $db = new Database();
+                if($_GET["Uid"] > 0)
+                {
+                    $db->updateUser($_GET["Uid"], $_GET["Uemail"], $_GET["Uusername"], $_GET["Uaddress"], $_GET["Uadmin"]);
+                }else{
+                    echo("sheep");
+                    // needs password
+                    //$db->addUser($_GET["Uusername"], $_GET["Uaddress"], $_GET["Uadmin"]);
+                }
+            }
+        ?>
+        </div>
     <div class="homeBox">
         <h2> users</h2>
         <?php 
@@ -62,7 +78,6 @@
             //printPage($_SESSION[$categories . "Page"], $products);
         ?>
     </div>
-    
 </body>
 
 </html>

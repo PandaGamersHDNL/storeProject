@@ -38,7 +38,8 @@
 
                 if(isset($_POST["id"], $_POST["email"], $_POST["username"], $_POST["address"], $_POST["admin"]))
                     {
-                        header("location: /php-mysxl/storeProject/html/admin.php?id=". $_POST["id"]. "&email=".$_POST["username"]."&address=".$_POST["address"]."&admin=".$_POST["admin"]);
+                        // TODO add password
+                        header("location: /php-mysxl/storeProject/html/admin.php?Uid=". $_POST["id"]. "&Uemail=".$_POST["email"]."&Uusername=".$_POST["username"]."&Uaddress=".$_POST["address"]."&Uadmin=".$_POST["admin"]);
                     }
                 if(!isset($_GET["editUser"]))
                 {

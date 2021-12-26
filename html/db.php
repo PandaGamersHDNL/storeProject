@@ -132,6 +132,18 @@ class Database{
         }
         return false;
     }
+
+    public function updateUser(int $id,string $email, string $username, string $address, bool $admin )
+    {
+        //TODO password?
+        echo("<div class='homeBox'>");
+        $email = mysqli_real_escape_string($this->link, $email);
+        $username = mysqli_real_escape_string($this->link, $username);
+        $address = mysqli_real_escape_string($this->link, $address);
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+        $query =  "UPDATE users SET username = '$username', email = '$email', address = '$address', bAdmin = ".($admin ==true? 1: 0)." WHERE userID = $id;";
+        var_dump(mysqli_query($this->link, $query) or die("updating user failed"));
+    }
 }
 
 ?>
