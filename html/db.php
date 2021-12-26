@@ -55,7 +55,7 @@ class Database{
             $user = mysqli_fetch_array($users);
             $hash = $user["password"];
             if(password_verify($password, $hash)){
-                //include "session.php";
+                //include_once "session.php";
                 echo("login successful");
                 Session::setLogin($user["username"], $user["email"], $user["address"]);
                 header("location: /php-mysxl/storeProject/html/index.php");

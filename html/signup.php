@@ -11,7 +11,7 @@
 </head>
 <body>
     <header>
-        <?php include "nav.php" ?>
+        <?php include_once "nav.php" ?>
     </header>
     <div class="container-fluid">
         
@@ -28,7 +28,7 @@
                 <input type="submit" value="sign up">
                 <a href="./login.php">Already have an account?</a>
 <?php 
-//include "db.php";
+//include_once "db.php";
 if(isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["password"])&& isset($_POST["address"]) )
 {
     $db = new Database();

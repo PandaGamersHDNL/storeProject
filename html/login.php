@@ -15,7 +15,7 @@
 </head>
 <body>
     <header>
-        <?php include "nav.php"?>
+        <?php include_once "nav.php"?>
     </header>
     <div class="container-fluid">
         

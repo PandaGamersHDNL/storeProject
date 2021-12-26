@@ -11,7 +11,7 @@
 </head>
 <body>
     <header>
-        <?php include "nav.php"?>
+        <?php include_once "nav.php"?>
 </header>
 <div class="homeBox">
     <?php
@@ -24,7 +24,7 @@
         echo("<a href=\"" . $_SERVER["PHP_SELF"]
         . "?logout=yes\"> logout</a>");
 
-        //include "session.php";
+        //include_once "session.php";
         if( isset($_GET["logout"]) && $_GET["logout"] == "yes")
         {
             Session::logout();

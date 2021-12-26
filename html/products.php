@@ -3,14 +3,15 @@
         static public function printTable($products = null)
         {
             echo("<table class='users'>");
-            echo("<tr><th>ID</th><th> admin? </th><th> username</th><th> email </th><th> address </th><th>edit</th><th>del</th></tr> ");
+            echo("<tr><th>ID</th><th> name </th><th> description</th><th> price </th><th> category </th><th>edit</th><th>del</th></tr> ");
             while($product = mysqli_fetch_array($products)){
                 echo("<tr><th>" . $product["productID"] . "</th><td>" 
-                    . ($product["bAdmin"] ? "yes." : "no.") .  "</td><td>". $product["username"] ."</td><td>" . $product["email"] 
-                    . "</td><td>". $product["address"] ."</td><td><a href='" . $_SERVER["PHP_SELF"] . "' >edit</a></td> 
+                    . ($product["name"]) .  "</td><td>". $product["description"] ."</td><td>" . $product["price"] 
+                    . "</td><td>". Products::getCategoryName($product["categoryID"])["name"] ."</td><td><a href='" . $_SERVER["PHP_SELF"] . "' >edit</a></td> 
                     <td><a href='" . $_SERVER["PHP_SELF"] . "' >del</a></td></tr> "
                 ); 
             }
+            echo("</table>");
         }
 
         static public function categoryTable($categories)
@@ -33,6 +34,7 @@
             echo("<div class='homeBox'>
             <h2>". $product["name"] ."</h2>
             <p><strong>description:</strong> " . $product["description"] ."</p>
+            <p><strong>category:</strong> " . Products::getCategoryName($product["categoryID"])["name"] ."</p>
             <p><strong>price:</strong> ". $product["price"]."</p>
             
             
@@ -40,6 +42,22 @@
             
             </div>");
             }
+        }
+
+        static function getCategoryName(int $categoryID = null)
+        {
+            include_once("db.php");
+            $db = new Database();
+            $categors = $db->getCategories();
+            
+            while($c = mysqli_fetch_array($categors))
+            {
+                if($c["categoryID"] == $categoryID)
+                {
+                    return $c;
+                }
+            }
+            return false;
         }
     }
 

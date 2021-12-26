@@ -11,12 +11,12 @@
 </head>
 <body>
     <header>
-        <?php include "nav.php"?>
+        <?php include_once "nav.php"?>
         
     </header>
     <div class="container-fluid">
         <?php
-        include "products.php";
+        include_once "products.php";
         $db = new Database();
         $prod = $db->getProducts(1);
         if($prod != false){

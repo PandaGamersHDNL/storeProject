@@ -13,7 +13,7 @@
 
 <body>
     <header>
-        <?php include "nav.php"?>
+        <?php include_once "nav.php"?>
     </header>
     <?php 
         $users = "users";
@@ -25,6 +25,7 @@
             {
                 header("location: /php-mysxl/storeProject/html/index.php");
             }
+            //check if set then add number if changed
             $_SESSION[$users. "Page"] = 1;
             $_SESSION[$products . "Page"] = 1;
         } else {
@@ -48,12 +49,12 @@
                 $db->delUser($_GET["Udel"]);
             }
         ?>
-        
+
     <div class="homeBox">
         <h2> users</h2>
         <?php 
             $db = new Database();
-            include "user.php";
+            include_once "user.php";
             $dbUsers = $db->getUsers($_SESSION[$products . "Page"]);
             User::printTable($dbUsers);
             printPage($_SESSION[$users. "Page"], $users);
@@ -63,7 +64,9 @@
         <h2> products</h2>
         <form><label for=""></label>  </from>
         <?php 
-            
+            include_once("products.php");
+            $prods = $db->getProducts($_SESSION[$products . "Page"]);
+            Products::printTable($prods);
             //add search by name
             //get users
             //print x amount of users
@@ -73,7 +76,7 @@
     <div class="homeBox">
         <h2> categories</h2>
         <?php 
-            include("products.php");
+            include_once("products.php");
             $categories = $db->getCategories();
             if($categories != false)
                 Products::categoryTable($categories);
