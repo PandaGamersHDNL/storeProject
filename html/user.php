@@ -9,13 +9,20 @@ class User {
         while($user = mysqli_fetch_array($users)){
             echo("<tr><th>" . $user["userID"] . "</th><td>" 
                 . ($user["bAdmin"] ? "yes." : "no.") .  "</td><td>". $user["username"] ."</td><td>" . $user["email"] 
-                . "</td><td>". $user["address"] ."</td><td><a href='" . $_SERVER["PHP_SELF"] . "' >edit</a></td> 
+                . "</td><td>". $user["address"] ."</td><td><a href='" . $_SERVER["PHP_SELF"] . "?editUser=". $user["userID"] ."' >edit</a></td> 
                 <td><a href='" . $_SERVER["PHP_SELF"] . "' >del</a></td></tr> "
             );  
         }
         echo("</table>");
     }
 
+}
+
+
+if(isset($_GET["editUser"]) && $_GET["editUser"] >= 0)
+{
+    //0 = add
+    header("location: /php-mysxl/storeProject/html/editUser.php?editUser=". $_GET["editUser"]);    
 }
 
 ?>

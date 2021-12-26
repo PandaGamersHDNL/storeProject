@@ -22,7 +22,7 @@ class Database{
         mysqli_select_db($this->link, $this->database) or die("couldn't open database");
     }
 
-    public function addUser(string $username, string $email, string $password, string $address )
+    public function addUser(string $username, string $email, string $password, string $address, bool $admin = false )
     {
         $username = mysqli_real_escape_string($this->link, $username);
         $email = mysqli_real_escape_string($this->link, $email);
@@ -34,7 +34,7 @@ class Database{
         {
             $password = password_hash($password, PASSWORD_DEFAULT, [PASSWORD_DEFAULT]);
             $query = "INSERT INTO users (username, email, password, address, bAdmin) 
-                VALUE ('". $username . "', '". $email . "', '" . $password . "', '" . $address  . "', FALSE)";
+                VALUE ('". $username . "', '". $email . "', '" . $password . "', '" . $address  . "', ". ($admin ==true ? 1 : 0) . ")";
             mysqli_query($this->link, $query) or die("add user failed");
             echo "<br/>sign up successfull";
             Session::setLogin($username, $email, $address);
@@ -120,6 +120,17 @@ class Database{
         }
         return false;
 
+    }
+
+    public function getUser(int $id = null)
+    {
+        $query = "SELECT * FROM users WHERE userID = $id";
+        $userSql = mysqli_query($this->link, $query) or die("get user failed");
+        if ($userSql->num_rows > 0)
+        {
+            return mysqli_fetch_array($userSql);
+        }
+        return false;
     }
 }
 
