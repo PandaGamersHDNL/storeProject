@@ -49,10 +49,23 @@
                 $db->delUser($_GET["Udel"]);
             }
         ?>
+        <?php
+ if(isset($_GET["Pid"], $_GET["Pname"], $_GET["Pdesc"], $_GET["Pcategory"], $_GET["Pprice"], $_GET["Pstock"],$_GET["Pimg"]))
+ {
+     $db = new Database();
+     if($_GET["Pid"] == 0)
+     {
+         //TODO add product
+     } else if ($_GET["Pid"] > 0){
+         $db->updateProduct($_GET["Pid"], $_GET["Pname"], $_GET["Pdesc"], $_GET["Pcategory"], $_GET["Pprice"], $_GET["Pstock"],$_GET["Pimg"]);
+     }
+ }
+?>
 
-    <div class="homeBox">
-        <h2> users</h2>
-        <?php 
+<div class="homeBox">
+    <h2> users</h2>
+    <?php 
+   
             $db = new Database();
             include_once "user.php";
             $dbUsers = $db->getUsers($_SESSION[$products . "Page"]);
@@ -62,7 +75,7 @@
     </div>
     <div class="homeBox">
         <h2> products</h2>
-        <form><label for=""></label>  </from>
+        <form><label for=""></label>  </from> <button> <a href='/php-mysxl/storeProject/html/editProduct.php?product=0'>add</a></button>
         <?php 
             include_once("products.php");
             $prods = $db->getProducts($_SESSION[$products . "Page"]);

@@ -110,6 +110,17 @@ class Database{
         return false;
     }
 
+    public function getProduct(int $id = null)
+    {
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+        $query = "SELECT * FROM products WHERE productID = $id";
+        $prods = mysqli_query($this->link, $query) or die("get product failed");
+        if ($prods->num_rows > 0) {
+            return mysqli_fetch_array($prods);
+        }
+        return false;
+    }
+
     public function getCategories()
     {
         $query = "SELECT * FROM categories";
@@ -149,6 +160,22 @@ class Database{
         $id = filter_var($id, FILTER_VALIDATE_INT);
         $query = "DELETE FROM users WHERE userID = $id;";
         mysqli_query($this->link, $query) or die("deleting user failed");
+    }
+
+    public function updateProduct(int $id,string $name, string $desc,int $category, float $price,int $stock, string $img)
+    {
+        $name = mysqli_real_escape_string($this->link, $name);
+        $desc = mysqli_real_escape_string($this->link, $desc);
+        $img = mysqli_real_escape_string($this->link, $img);
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+        $stock = filter_var($stock, FILTER_VALIDATE_INT);
+        $category = filter_var($category, FILTER_VALIDATE_INT);
+        $price = filter_var($price, FILTER_VALIDATE_FLOAT);
+        
+
+        $query =  "UPDATE products SET name = '$name', description = '$desc', categoryID = $category, price = $price, stock = $stock, imagePath = '$img' WHERE productID = $id;";
+        echo($query);
+        mysqli_query($this->link, $query) or die("updating product failed");
     }
 }
 

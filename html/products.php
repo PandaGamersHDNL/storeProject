@@ -2,13 +2,14 @@
     class Products {
         static public function printTable($products = null)
         {
+            //TODO add stock + img
             echo("<table class='users'>");
             echo("<tr><th>ID</th><th> name </th><th> description</th><th> price </th><th> category </th><th>edit</th><th>del</th></tr> ");
             while($product = mysqli_fetch_array($products)){
                 echo("<tr><th>" . $product["productID"] . "</th><td>" 
                     . ($product["name"]) .  "</td><td>". $product["description"] ."</td><td>" . $product["price"] 
-                    . "</td><td>". Products::getCategoryName($product["categoryID"])["name"] ."</td><td><a href='" . $_SERVER["PHP_SELF"] . "' >edit</a></td> 
-                    <td><a href='" . $_SERVER["PHP_SELF"] . "' >del</a></td></tr> "
+                    . "</td><td>". Products::getCategoryName($product["categoryID"])["name"] ."</td><td><a href='/php-mysxl/storeProject/html/editProduct.php?product=" . $product["productID"] . "' >edit</a></td> 
+                    <td><a href='" . $_SERVER["PHP_SELF"] . "?Pdel=" . $product["productID"] . "' >del</a></td></tr> "
                 ); 
             }
             echo("</table>");
