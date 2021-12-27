@@ -21,8 +21,8 @@
                     //TODO add cancel button + check fields?
                     //TODO change id to select so that we can have 1 value only -> not changable
                     echo('<form method="POST">
-                    <h2>don\'t change the id if you want this one changed</h2>
-                    <label for="id">ID: </label><input id="id" name="id" value="'. ($id ==0 ? "unknown" : $id) .'"/><br/>
+                    <h2> edit user</h2>
+                    <label for="id">ID: </label><select id="id" name="id"><option value="'. ($id ==0 ? "unknown" : $id) .'"/>'.($id ==0 ? "unknown" : $id).' </option></select><br/>
                     <label for="email">email</label>
                     <input id="email" type="text" name="email" value="'.$email.'"/><br/>
                     <label for="username">username</label>

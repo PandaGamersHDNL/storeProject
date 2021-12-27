@@ -8,7 +8,7 @@
             while($product = mysqli_fetch_array($products)){
                 echo("<tr><th>" . $product["productID"] . "</th><td>" 
                     . ($product["name"]) .  "</td><td>". $product["description"] ."</td><td>" . $product["price"] 
-                    . "</td><td>". Products::getCategoryName($product["categoryID"])["name"] ."</td><td><a href='/php-mysxl/storeProject/html/editProduct.php?product=" . $product["productID"] . "' >edit</a></td> 
+                    . "</td><td>". Products::getCategory($product["categoryID"])["name"] ."</td><td><a href='/php-mysxl/storeProject/html/editProduct.php?product=" . $product["productID"] . "' >edit</a></td> 
                     <td><a href='" . $_SERVER["PHP_SELF"] . "?Pdel=" . $product["productID"] . "' >del</a></td></tr> "
                 ); 
             }
@@ -19,10 +19,11 @@
         {
             //TODO add delete/edit/add
             echo("<table class='users'>");
-            echo("<tr><th>ID</th><th> name </th><th> description</th></tr> ");
+            echo("<tr><th>ID</th><th> name </th><th> description</th><th>edit</th><th>del</th></tr> ");
             while($category = mysqli_fetch_array($categories)){
                 echo("<tr><th>" . $category["categoryID"] . "</th><td>" 
-                    . ($category["name"] ) .  "</td><td>". $category["description"] . "</td></tr> "
+                    . ($category["name"] ) .  "</td><td>". $category["description"] . "</td><td><a href='/php-mysxl/storeProject/html/editCategory.php?category=" . $category["categoryID"] . "' >edit</a></td> 
+                    <td><a href='" . $_SERVER["PHP_SELF"] . "?Cdel=" . $category["categoryID"] . "' >del</a></td></tr> "
                 ); 
             } 
             echo("</table>");
@@ -35,7 +36,7 @@
             echo("<div class='homeBox'>
             <h2>". $product["name"] ."</h2>
             <p><strong>description:</strong> " . $product["description"] ."</p>
-            <p><strong>category:</strong> " . Products::getCategoryName($product["categoryID"])["name"] ."</p>
+            <p><strong>category:</strong> " . Products::getCategory($product["categoryID"])["name"] ."</p>
             <p><strong>price:</strong> ". $product["price"]."</p>
             
             
@@ -45,7 +46,7 @@
             }
         }
 
-        static function getCategoryName(int $categoryID = null)
+        static function getCategory(int $categoryID = null)
         {
             include_once("db.php");
             $db = new Database();

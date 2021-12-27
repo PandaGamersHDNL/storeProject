@@ -23,12 +23,12 @@
                     $categories = $db->getCategories();
                     $options = "";
                     while($c = mysqli_fetch_array($categories))
-                        $options =  $options .'<option value="'.$c["categoryID"].'" ' . ($c == $category ? "selected" : "" ). ' >'.$c["name"].'</option>';
+                        $options =  $options .'<option value="'.$c["categoryID"].'" ' . ($c["categoryID"] == $category ? 'selected' : "" ). '>'.$c["name"].'</option>';
 
 
 
                     echo('<form method="POST">
-                    <h2>don\'t change the id if you want this one changed</h2>
+                    <h2> '.($id ==0 ? "add" : "edit") . ' product</h2>
                     <label for="id">ID: </label><select id="id" name="id"><option value="'. ($id ==0 ? "unknown" : $id) .'"/>'.($id ==0 ? "unknown" : $id).' </option></select><br/>
                     <label for="name">name</label>
                     <input id="name" type="text" name="name" value="'.$name.'"/><br/>

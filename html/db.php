@@ -121,18 +121,6 @@ class Database{
         return false;
     }
 
-    public function getCategories()
-    {
-        $query = "SELECT * FROM categories";
-        $categories = mysqli_query($this->link, $query) or die("get users failed");
-        if ($categories->num_rows > 0)
-        {
-            return $categories;
-        }
-        return false;
-
-    }
-
     public function getUser(int $id = null)
     {
         $query = "SELECT * FROM users WHERE userID = $id";
@@ -174,28 +162,80 @@ class Database{
         
 
         $query =  "UPDATE products SET name = '$name', description = '$desc', categoryID = $category, price = $price, stock = $stock, imagePath = '$img' WHERE productID = $id;";
-        echo($query);
         mysqli_query($this->link, $query) or die("updating product failed");
     }
 
     public function addProduct(string $name, string $desc, int $category, float $price, int $stock,string $img)
     {
+        
+        $name = mysqli_real_escape_string($this->link, $name);
+        $desc = mysqli_real_escape_string($this->link, $desc);
+        $img = mysqli_real_escape_string($this->link, $img);
+        $category = filter_var($category, FILTER_VALIDATE_INT);
+        $stock = filter_var($stock, FILTER_VALIDATE_INT);
+        $price = filter_var($price, FILTER_VALIDATE_FLOAT);
+
+        $query = "INSERT INTO products (name, description, categoryID, stock, price, imagePath)
+        VALUE ('". $name . "', '". $desc . "', " . $category . ", " . $price  . ", ". $stock .", '".$img."')";
+        mysqli_query($this->link, $query) or die("add product failed");
+    }
+
+    public function delProduct(int $id = null)
+    {
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+        $query = "DELETE FROM products WHERE productID = $id;";
+        mysqli_query($this->link, $query) or die("deleting product failed");
+    }
+
+    public function getCategories()
+    {
+        $query = "SELECT * FROM categories";
+        $categories = mysqli_query($this->link, $query) or die("get users failed");
+        if ($categories->num_rows > 0)
         {
-            //TODO password?
-            $name = mysqli_real_escape_string($this->link, $name);
-            $desc = mysqli_real_escape_string($this->link, $desc);
-            $img = mysqli_real_escape_string($this->link, $img);
-            $category = filter_var($category, FILTER_VALIDATE_INT);
-            $stock = filter_var($stock, FILTER_VALIDATE_INT);
-            $price = filter_var($price, FILTER_VALIDATE_FLOAT);
-
-
-            $query = "INSERT INTO products (name, description, categoryID, stock, price, imagePath)
-            VALUE ('". $name . "', '". $desc . "', " . $category . ", " . $price  . ", ". $stock .", '".$img."')";
-            echo($query);
-            mysqli_query($this->link, $query) or die("add product failed");
+            return $categories;
         }
+        return false;
+
+    }
+    public function getCategory(int $id = null)
+    {
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+        $query = "SELECT * FROM categories WHERE categoryID = $id";
+        $prods = mysqli_query($this->link, $query) or die("get category failed");
+        if ($prods->num_rows > 0) {
+            return mysqli_fetch_array($prods);
+        }
+        return false;
+    }
+
+    public function updateCategory(int $id,string $name, string $desc)
+    {
+        $name = mysqli_real_escape_string($this->link, $name);
+        $desc = mysqli_real_escape_string($this->link, $desc);
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+
+        $query =  "UPDATE categories SET name = '$name', description = '$desc' WHERE categoryID = $id;";
+        mysqli_query($this->link, $query) or die("updating category failed");
+    }
+    
+    public function addCategory(string $name, string $desc)
+    {
+        
+        $name = mysqli_real_escape_string($this->link, $name);
+        $desc = mysqli_real_escape_string($this->link, $desc);
+        
+        $query = "INSERT INTO categories (name, description)
+        VALUE ('". $name . "', '". $desc . "')";
+        mysqli_query($this->link, $query) or die("add category failed");
+    }
+
+    public function delCategory(int $id = null)
+    {
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+        $query = "DELETE FROM categories WHERE categoryID = $id;";
+        mysqli_query($this->link, $query) or die("deleting category failed");
     }
 }
-
-?>
+    
+    ?>

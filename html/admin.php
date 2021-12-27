@@ -50,6 +50,7 @@
             }
         ?>
         <?php
+        //product actions
             if(isset($_GET["Pid"], $_GET["Pname"], $_GET["Pdesc"], $_GET["Pcategory"], $_GET["Pprice"], $_GET["Pstock"],$_GET["Pimg"]))
             {
                 $db = new Database();
@@ -64,6 +65,23 @@
             {
                 $db->delProduct($_GET["Pdel"]);
             }
+?>
+<?php
+//category actions
+    if(isset($_GET["Cid"], $_GET["Cname"], $_GET["Cdesc"]))
+    {
+        $db = new Database();
+        if($_GET["Cid"] == "unknown")
+        {
+            $db->addCategory($_GET["Cname"], $_GET["Cdesc"]);
+        } else if ($_GET["Cid"] > 0){
+            $db->updateCategory($_GET["Cid"], $_GET["Cname"], $_GET["Cdesc"]);
+        }
+    }
+    if(isset($_GET["Cdel"]) && $_GET["Cdel"] > 0)
+    {
+        $db->delCategory($_GET["Cdel"]);
+    }
 ?>
 
 <div class="homeBox">
@@ -92,6 +110,8 @@
     </div>
     <div class="homeBox">
         <h2> categories</h2>
+        <form><label for=""></label>  </from> <button> <a href='/php-mysxl/storeProject/html/editCategory.php?category=0'>add</a></button>
+
         <?php 
             include_once("products.php");
             $categories = $db->getCategories();
