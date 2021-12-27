@@ -50,16 +50,20 @@
             }
         ?>
         <?php
- if(isset($_GET["Pid"], $_GET["Pname"], $_GET["Pdesc"], $_GET["Pcategory"], $_GET["Pprice"], $_GET["Pstock"],$_GET["Pimg"]))
- {
-     $db = new Database();
-     if($_GET["Pid"] == 0)
-     {
-         //TODO add product
-     } else if ($_GET["Pid"] > 0){
-         $db->updateProduct($_GET["Pid"], $_GET["Pname"], $_GET["Pdesc"], $_GET["Pcategory"], $_GET["Pprice"], $_GET["Pstock"],$_GET["Pimg"]);
-     }
- }
+            if(isset($_GET["Pid"], $_GET["Pname"], $_GET["Pdesc"], $_GET["Pcategory"], $_GET["Pprice"], $_GET["Pstock"],$_GET["Pimg"]))
+            {
+                $db = new Database();
+                if($_GET["Pid"] == "unknown")
+                {
+                    $db->addProduct($_GET["Pname"], $_GET["Pdesc"], $_GET["Pcategory"], $_GET["Pprice"], $_GET["Pstock"],$_GET["Pimg"]);
+                } else if ($_GET["Pid"] > 0){
+                    $db->updateProduct($_GET["Pid"], $_GET["Pname"], $_GET["Pdesc"], $_GET["Pcategory"], $_GET["Pprice"], $_GET["Pstock"],$_GET["Pimg"]);
+                }
+            }
+            if(isset($_GET["Pdel"]) && $_GET["Pdel"] > 0)
+            {
+                $db->delProduct($_GET["Pdel"]);
+            }
 ?>
 
 <div class="homeBox">

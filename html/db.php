@@ -177,6 +177,25 @@ class Database{
         echo($query);
         mysqli_query($this->link, $query) or die("updating product failed");
     }
+
+    public function addProduct(string $name, string $desc, int $category, float $price, int $stock,string $img)
+    {
+        {
+            //TODO password?
+            $name = mysqli_real_escape_string($this->link, $name);
+            $desc = mysqli_real_escape_string($this->link, $desc);
+            $img = mysqli_real_escape_string($this->link, $img);
+            $category = filter_var($category, FILTER_VALIDATE_INT);
+            $stock = filter_var($stock, FILTER_VALIDATE_INT);
+            $price = filter_var($price, FILTER_VALIDATE_FLOAT);
+
+
+            $query = "INSERT INTO products (name, description, categoryID, stock, price, imagePath)
+            VALUE ('". $name . "', '". $desc . "', " . $category . ", " . $price  . ", ". $stock .", '".$img."')";
+            echo($query);
+            mysqli_query($this->link, $query) or die("add product failed");
+        }
+    }
 }
 
 ?>
