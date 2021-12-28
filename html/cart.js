@@ -1,19 +1,27 @@
 function addToCart(id, amount) {
     console.log("carts");
     let url = "html/addCart.php";
-    xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    let data = new FormData(document.getElementById("filter"));
-    xhr.send(data);
+    xhrCart = new XMLHttpRequest();
+    xhrCart.open("POST", url, true);
+    //let data = new FormData(document.getElementById("filter"));
+    xhrCart.send(data);
 }
 
 function filterItems() {
     console.log("filter");
     let url = "/php-mysxl/storeProject/html/filter.php";
-    xhr = new XMLHttpRequest();
-    xhr.open("GET", url, true);
-    console.log(document.getElementById("filter"));
+    xhrFilter = new XMLHttpRequest();
+    xhrFilter.open("POST", url, true);
     let data = new FormData(document.getElementById("filter"));
+    xhrFilter.onreadystatechange=filterReturn;
+    console.log(document.getElementById("filter"));
     console.log(data);
-    xhr.send(data);
+    xhrFilter.send(data);
+}
+
+function filterReturn() {
+    if(xhrFilter.readyState == 4 && xhrFilter.status == 200){
+        document.getElementById("products").innerHTML = xhrFilter.responseText; 
+        console.log(xhrFilter.responseText)
+    }
 }

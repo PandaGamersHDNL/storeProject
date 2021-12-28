@@ -45,8 +45,7 @@
             {
                 $db->delUser($_GET["Udel"]);
             }
-        ?>
-        <?php
+        
         //product actions
             if(isset($_GET["Pid"], $_GET["Pname"], $_GET["Pdesc"], $_GET["Pcategory"], $_GET["Pprice"], $_GET["Pstock"],$_GET["Pimg"]))
             {
@@ -62,8 +61,7 @@
             {
                 $db->delProduct($_GET["Pdel"]);
             }
-?>
-<?php
+
 //category actions
     if(isset($_GET["Cid"], $_GET["Cname"], $_GET["Cdesc"]))
     {

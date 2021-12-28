@@ -187,6 +187,40 @@ class Database{
         mysqli_query($this->link, $query) or die("deleting product failed");
     }
 
+    public function filterProducts(float $min = 0, float $max = 0, array $categories, int $page, string $name = "", int $perPage = 10)
+    {
+        $name = mysqli_real_escape_string($this->link, $name);
+        
+        $max = filter_var($max, FILTER_VALIDATE_FLOAT);
+        $min = filter_var($min, FILTER_VALIDATE_FLOAT);
+
+        $query = "SELECT * FROM products WHERE name LIKE '%" . $name."%' AND price > $min ";
+        if($max > .01)
+        {
+            $query = $query . "AND price < $max ";
+        }
+        if( count($categories) > 0) {
+            $query = $query . "AND ( ";
+            $categories[0] = filter_var($categories[0], FILTER_VALIDATE_INT);
+            $query = $query . "categoryID = ". $categories[0]." ";
+            for($i = 1 ; $i < count($categories); $i++){
+                $categories[$i] = filter_var($categories[$i], FILTER_VALIDATE_INT);
+                $query = $query . "OR categoryID = " . $categories[$i];
+            }
+            $query = $query . ") ";
+        }
+        //SELECT * FROM products where price >= 55 AND price <= 100 AND (categoryID = 2 OR categoryID = 3);
+        $page -= 1;
+        $query = $query . " LIMIT $perPage OFFSET ". ($perPage * $page) . ";";
+        
+        $prods = mysqli_query($this->link, $query) or die("filtering products failed");
+        if($prods->num_rows > 0)
+        {
+            return $prods;
+        }
+        return false;
+    }
+
     public function getCategories()
     {
         $query = "SELECT * FROM categories";

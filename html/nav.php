@@ -50,18 +50,9 @@
             } else{
                 echo('<a href="/php-mysxl/storeProject/html/login.php">login/ signup</a>');
             }
-            //load cart amount (only not payed ones)
+            //TODO load cart amount (only not payed ones)
         ?>
         </li>
         <li><a href="/php-mysxl/storeProject/html/cart.php" > cart</a></li>
     </ul>
-</nav>
-<!-- TODO make check box list from this (join query) + add price filter (seperate file?) -->
-<nav>
-    <ul>
-        <li>category1</li>
-        <li>category2</li>
-        <li>category3</li>
-        <li>category4</li>
-        <li>category5</li>
 </nav>

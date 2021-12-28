@@ -43,7 +43,7 @@
             
             
             <br/>
-            <button onclick='addToCart(5, 5)' </button>
+            <button onclick='addToCart(5, 5)'> add to cart </button>
             </div>");
             }
         }
