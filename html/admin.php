@@ -32,9 +32,6 @@
             header("location: /php-mysxl/storeProject/html/index.php");
         }
 
-        
-        ?>
-        <?php
         //user actions
             if(isset($_GET["Uid"],$_GET["Uadmin"],$_GET["Uusername"],$_GET["Uemail"], $_GET["Uaddress"]))
             {

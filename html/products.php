@@ -10,6 +10,7 @@
                     . ($product["name"]) .  "</td><td>". $product["description"] ."</td><td>" . $product["price"] 
                     . "</td><td>". Products::getCategory($product["categoryID"])["name"] ."</td><td><a href='/php-mysxl/storeProject/html/editProduct.php?product=" . $product["productID"] . "' >edit</a></td> 
                     <td><a href='" . $_SERVER["PHP_SELF"] . "?Pdel=" . $product["productID"] . "' >del</a></td></tr> "
+                    
                 ); 
             }
             echo("</table>");
@@ -32,6 +33,7 @@
         static public function printDiv($products = null)
         {
             //TODO add image
+            //TODO add order button + amount
             while($product = mysqli_fetch_array($products)){
             echo("<div class='homeBox'>
             <h2>". $product["name"] ."</h2>
@@ -40,8 +42,8 @@
             <p><strong>price:</strong> ". $product["price"]."</p>
             
             
-            
-            
+            <br/>
+            <button onclick='addToCart(5, 5)' </button>
             </div>");
             }
         }

@@ -18,7 +18,7 @@
             <h2>cart</h2>
         </div>
         <div class="homeBox">
-            <h2> bought previously</h2>
+            <h2>bought previously</h2>
         </div>
         <div class="homeBox">
             
