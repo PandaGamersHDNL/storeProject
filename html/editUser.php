@@ -54,7 +54,7 @@
                     $db = new Database();
                     $user = $db->getUser($_GET["editUser"]);
                     if($user != false)
-                        form($user["userID"], $user["username"], $user["email"], $user["address"], $user["bAdmin"]);
+                        form($user["userID"], $user["email"],$user["username"], $user["address"], $user["bAdmin"]);
                     else
                         echo("<h3>failed to get user</h3>");
                 }

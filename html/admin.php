@@ -87,7 +87,7 @@
             include_once "user.php";
             $dbUsers = $db->getUsers($_SESSION[$products . "Page"]);
             User::printTable($dbUsers);
-            printPage($_SESSION[$users. "Page"], $users);
+            //printPage($_SESSION[$users. "Page"], $users);
         ?>
     </div>
     <div class="homeBox">
@@ -100,7 +100,7 @@
             //add search by name
             //get users
             //print x amount of users
-            printPage($_SESSION[$products . "Page"], $products);
+            //printPage($_SESSION[$products . "Page"], $products);
         ?>
     </div>
     <div class="homeBox">

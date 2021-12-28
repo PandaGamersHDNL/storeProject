@@ -53,6 +53,6 @@
             //TODO load cart amount (only not payed ones)
         ?>
         </li>
-        <li><a href="/php-mysxl/storeProject/html/cart.php" > cart</a></li>
+        <li><a href="/php-mysxl/storeProject/html/cart.php" id="cart"> cart</a></li>
     </ul>
 </nav>

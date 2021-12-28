@@ -34,14 +34,13 @@ This is a store created with for school
         PRIMARY KEY (productID)
     );
 
-### to create
-
     CREATE TABLE orders (
+        orderID int NOT NULL AUTO_INCREMENT,
         userID int NOT NULL,
         productID int NOT NULL,
-        date dateTime,
+        payDate dateTime,
         amount int,
-        deliveryAdress varchar(255),
         FOREIGN KEY (userID) REFERENCES users(userID),
         FOREIGN KEY (productID) REFERENCES products(productID),
+        PRIMARY KEY (orderID)
     );

@@ -7,9 +7,14 @@ class Database{
     public $database = "storedb";
     public mysqli $link;
 
-    function __construct()
+    public function __construct()
     {
         $this->connectDB();
+    }
+
+    public function __destruct()
+    {
+        mysqli_close($this->link);
     }
 
     public function connectDB(){
@@ -32,12 +37,13 @@ class Database{
         $user = mysqli_query($this->link, $query) or die("add user failed");
         if ($user->num_rows == 0)
         {
-            $password = password_hash($password, PASSWORD_DEFAULT, [PASSWORD_DEFAULT]);
+            $hash = password_hash($password, PASSWORD_DEFAULT, [PASSWORD_DEFAULT]);
             $query = "INSERT INTO users (username, email, password, address, bAdmin) 
-                VALUE ('". $username . "', '". $email . "', '" . $password . "', '" . $address  . "', ". ($admin ==true ? 1 : 0) . ")";
+                VALUE ('". $username . "', '". $email . "', '" . $hash . "', '" . $address  . "', ". ($admin ==true ? 1 : 0) . ")";
             mysqli_query($this->link, $query) or die("add user failed");
             echo "<br/>sign up successfull";
-            Session::setLogin($username, $email, $address);
+            $this->verifyUser($email, $password);
+            //Session::setLogin($username, $email, $address);
             header("location: /php-mysxl/storeProject/html/index.php");
         } else {
             echo "<br/>user already exists";
@@ -49,7 +55,7 @@ class Database{
     public function verifyUser(string $email, string $password)
     {
         $email = mysqli_real_escape_string($this->link, $email);
-        $query = "select username, email, address, password from users where email = '$email'; ";
+        $query = "select userID ,username, email, address, password from users where email = '$email'; ";
         $users = mysqli_query($this->link, $query) or die("get password failed");
         if($users->num_rows > 0){
             $user = mysqli_fetch_array($users);
@@ -57,7 +63,7 @@ class Database{
             if(password_verify($password, $hash)){
                 //include_once "session.php";
                 echo("login successful");
-                Session::setLogin($user["username"], $user["email"], $user["address"]);
+                Session::setLogin($user["userID"], $user["username"], $user["email"], $user["address"]);
                 header("location: /php-mysxl/storeProject/html/index.php");
                 return true;
             } 
@@ -79,13 +85,12 @@ class Database{
         return false;
     }
 
-    public function getUsers(int $page, int $perPage = 10)
+    public function getUsers(int $page, int $perPage = 100)
     {
         $page -=1;
         $page = filter_var($page, FILTER_VALIDATE_INT);
         $perPage = filter_var($perPage, FILTER_VALIDATE_INT);
 
-        //$query = "SELECT * FROM ( SELECT (ROW_NUMBER() over ()) as row, users.* FROM users) as t WHERE row BETWEEN ". (($page -1) * $perPage) + 1 . " and ". $page * $perPage  .";";
         $query = "SELECT * FROM users LIMIT $perPage OFFSET " . ($page * $perPage);
         $users = mysqli_query($this->link, $query) or die("get users failed");
         if ($users->num_rows > 0) {
@@ -94,7 +99,7 @@ class Database{
         return false;
     }
 
-    public function getProducts(int $page, int $perPage = 10)
+    public function getProducts(int $page, int $perPage = 100)
     {
         $page -=1;
         $page = filter_var($page, FILTER_VALIDATE_INT);
@@ -187,7 +192,7 @@ class Database{
         mysqli_query($this->link, $query) or die("deleting product failed");
     }
 
-    public function filterProducts(float $min = 0, float $max = 0, array $categories, int $page, string $name = "", int $perPage = 10)
+    public function filterProducts(float $min = 0, float $max = 0, array $categories, int $page, string $name = "", int $perPage = 100)
     {
         $name = mysqli_real_escape_string($this->link, $name);
         
@@ -269,6 +274,34 @@ class Database{
         $id = filter_var($id, FILTER_VALIDATE_INT);
         $query = "DELETE FROM categories WHERE categoryID = $id;";
         mysqli_query($this->link, $query) or die("deleting category failed");
+    }
+
+    public function addOrder(int $userID, int $productID, int $amount)
+    {
+        //$name = mysqli_real_escape_string($this->link, $name);
+        //$desc = mysqli_real_escape_string($this->link, $desc);
+        $userID = filter_var($userID, FILTER_VALIDATE_INT);
+        $productID = filter_var($productID, FILTER_VALIDATE_INT);
+        $amount = filter_var($amount, FILTER_VALIDATE_INT);
+        
+        $query = "INSERT INTO orders (userID, productID, amount)
+        VALUE (". $userID . ", ". $productID . ", $amount)";
+        mysqli_query($this->link, $query) or die("add order failed");
+    }
+
+    public function getOrders(int $userID)
+    {
+        $query = "";
+        //mysqli_query($this->link, $query) or die("get orders for user failed");
+    }
+
+    public function getCartAmount(int $userID)
+    {
+        $userID = filter_var($userID, FILTER_VALIDATE_INT);
+        $query = "SELECT count(orderID) as amount FROM orders WHERE payDate IS NULL AND userID = $userID;";
+        $result = mysqli_query($this->link, $query) or die("add order failed");
+        $row = mysqli_fetch_array($result);
+        return $row["amount"];
     }
 }
     

@@ -32,7 +32,7 @@
                     if(isset($_POST["email"], $_POST["password"])  && $_POST["email"] != "" && $_POST["password"] != "")
                     {
                         $db = new Database();
-                        $db->checkAdmin();
+                        //$db->checkAdmin();
                         $db->verifyUser($_POST["email"], $_POST["password"]);
                     }
                 ?>

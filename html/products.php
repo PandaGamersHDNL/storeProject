@@ -40,10 +40,8 @@
             <p><strong>description:</strong> " . $product["description"] ."</p>
             <p><strong>category:</strong> " . Products::getCategory($product["categoryID"])["name"] ."</p>
             <p><strong>price:</strong> ". $product["price"]."</p>
-            
-            
-            <br/>
-            <button onclick='addToCart(5, 5)'> add to cart </button>
+            <label for='amount".$product["productID"]."'>amount: </label><input type='number' id='amount".$product["productID"]."' name='amount".$product["productID"]."' value='1' />
+            <button onclick='addToCart(".$product["productID"].")'> add to cart </button>
             </div>");
             }
         }
