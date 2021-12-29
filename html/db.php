@@ -289,10 +289,20 @@ class Database{
         mysqli_query($this->link, $query) or die("add order failed");
     }
 
-    public function getOrders(int $userID)
+    public function getOrders(int $userID, bool $bPayed = false)
     {
-        $query = "";
-        //mysqli_query($this->link, $query) or die("get orders for user failed");
+        $userID = filter_var($userID, FILTER_VALIDATE_INT);
+
+        $query = "SELECT * FROM orders WHERE payDate is ".($bPayed ? "NOT " : "")." NULL AND userID = $userID;";
+        $orders = mysqli_query($this->link, $query) or die("get orders for user failed");
+        if($orders->num_rows > 0)
+            return $orders;
+        return false;
+    }
+
+    public function delOrder(int $orderID)
+    {
+        # code...
     }
 
     public function getCartAmount(int $userID)

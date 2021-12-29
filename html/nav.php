@@ -53,6 +53,15 @@
             //TODO load cart amount (only not payed ones)
         ?>
         </li>
-        <li><a href="/php-mysxl/storeProject/html/cart.php" id="cart"> cart</a></li>
+        <li><a href="/php-mysxl/storeProject/html/cart.php" id="cart"> <?php 
+            echo("cart");
+        if($bLogin) {
+            $amount = $db->getCartAmount($_SESSION["userID"]);
+            if($amount > 0){
+            echo(": $amount");
+            }
+        }
+        
+        ?></a></li>
     </ul>
 </nav>

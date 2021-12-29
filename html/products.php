@@ -18,7 +18,6 @@
 
         static public function categoryTable($categories)
         {
-            //TODO add delete/edit/add
             echo("<table class='users'>");
             echo("<tr><th>ID</th><th> name </th><th> description</th><th>edit</th><th>del</th></tr> ");
             while($category = mysqli_fetch_array($categories)){
