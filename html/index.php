@@ -33,26 +33,15 @@
         </div>
         <div id="products">
         <?php
-        include_once "products.php";
+        include_once "classes/products.php";
         $db = new Database();
-        //TODO pages
         $prod = $db->getProducts(1);
         if($prod != false){
             Products::printDiv($prod);
         }
-        else{
-            echo $prod;
-        }
         ?>
         </div>
-        <!-- use this structure 
-        rows
-            column
-                item(desc, name,etc)
-        
-        
-        
-        -->
+
     </div>
 </body>
 </html>

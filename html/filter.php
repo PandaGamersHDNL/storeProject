@@ -1,8 +1,8 @@
 <?php
     if(isset($_POST["min"], $_POST["max"]))
     {
-        include_once("db.php");
-        include_once("products.php");
+        include_once("classes/db.php");
+        include_once("classes/products.php");
         $db = new Database;
         $categories = array();
         $cats = $db->getCategories();
@@ -18,7 +18,7 @@
         if($prods)
             Products::printDiv($prods);
         else
-            echo("<div class='homeBox'> " . var_dump($prods) . "</div>" );
+            echo("<div class='homeBox'><p>there are no products</p> </div>" );
         
     }
 ?>

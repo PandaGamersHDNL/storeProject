@@ -28,7 +28,7 @@
                 <input type="submit" value="sign up">
                 <a href="./login.php">Already have an account?</a>
 <?php 
-//include_once "db.php";
+
 if(isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["password"])&& isset($_POST["address"]) )
 {
     $db = new Database();
@@ -49,8 +49,7 @@ if(isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["password
             let item = document.getElementById(i);
             let errorText = "fill this bitch in"
             if(item.value == "" || item.value == errorText)
-            {
-                
+            { 
                 return false;
             }
             console.log(i)

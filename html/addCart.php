@@ -1,6 +1,6 @@
 <?php
-include_once("session.php");
-include_once("db.php");
+include_once("classes/session.php");
+include_once("classes/db.php");
     if(Session::checkLogin() && isset($_POST["productID"], $_POST["amount"]))
     {
         $db = new Database();

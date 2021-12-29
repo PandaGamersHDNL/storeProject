@@ -17,20 +17,25 @@
     <?php
         if(!Session::checkLogin())
         {
-            header("location: /php-mysxl/storeProject/html/index.php");
+            header("location: /php-mysxl/storeProject/html/login.php");
         }
         $db = new Database();
-        include_once("orders.php");  
+        include_once("classes/orders.php");  
         
+        if(isset($_GET["Odel"]))
+        {
+            $db->delOrder($_GET["Odel"]);
+        }
         
         ?>
         <div class="homeBox">
             <h2>cart</h2>
             <?php
                 $orders = $db->getOrders($_SESSION["userID"], false);
-                if($orders != false)
-                    Orders::printTable($orders, false);
-                else
+                if($orders != false){
+                    $price = Orders::printTable($orders, false);
+                    echo("<p>$price</p>");
+                }else
                     echo("no items in cart");
               ?>  
         </div>

@@ -22,18 +22,18 @@
 
                     echo('<form method="POST">
                     <h2> '.($id ==0 ? "add" : "edit") . ' category</h2>
-                    <label for="id">ID: </label><select id="id" name="id"><option value="'. ($id ==0 ? "unknown" : $id) .'"/>'.($id ==0 ? "unknown" : $id).' </option></select><br/>
+                    <label for="id">ID: </label><select id="id" name="id"><option value="'. ($id ==0 ? "unknown" : htmlspecialchars($id)) .'"/>'.($id ==0 ? "unknown" : htmlspecialchars($id)).' </option></select><br/>
                     <label for="name">name</label>
-                    <input id="name" type="text" name="name" value="'.$name.'"/><br/>
+                    <input id="name" type="text" name="name" value="'.htmlspecialchars($name).'"/><br/>
                     <label for="desc">desc</label>
-                    <input id="desc" type="text" name="desc" value="'.$desc.'"/><br/>
+                    <input id="desc" type="text" name="desc" value="'.htmlspecialchars($desc).'"/><br/>
                     <input type="submit" value="confirm"><br/>
                     </form>');
                 }
 
                 if(isset($_POST["id"], $_POST["name"], $_POST["desc"]))
                     {
-                        header("location: /php-mysxl/storeProject/html/admin.php?Cid=". $_POST["id"]. "&Cname=".$_POST["name"]."&Cdesc=".$_POST["desc"]);
+                        header("location: /php-mysxl/storeProject/html/admin.php?Cid=". htmlspecialchars($_POST["id"]). "&Cname=".htmlspecialchars($_POST["name"])."&Cdesc=".htmlspecialchars($_POST["desc"]));
                     }
                 if(!isset($_GET["category"]))
                 {

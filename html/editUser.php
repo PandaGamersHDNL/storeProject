@@ -22,16 +22,16 @@
                     //TODO change id to select so that we can have 1 value only -> not changable
                     echo('<form method="POST">
                     <h2> edit user</h2>
-                    <label for="id">ID: </label><select id="id" name="id"><option value="'. ($id ==0 ? "unknown" : $id) .'"/>'.($id ==0 ? "unknown" : $id).' </option></select><br/>
+                    <label for="id">ID: </label><select id="id" name="id"><option value="'. ($id ==0 ? "unknown" : htmlspecialchars($id)) .'"/>'.($id ==0 ? "unknown" : htmlspecialchars($id)).' </option></select><br/>
                     <label for="email">email</label>
-                    <input id="email" type="text" name="email" value="'.$email.'"/><br/>
+                    <input id="email" type="text" name="email" value="'.htmlspecialchars($email).'"/><br/>
                     <label for="username">username</label>
-                    <input id="username" type="text" name="username" value="'.$username.'"/><br/>
+                    <input id="username" type="text" name="username" value="'.htmlspecialchars($username).'"/><br/>
                     <label for="admin">admin?</</label><select id="admin" name="admin">
                     <option value="0" '. ($admin ? "": "selected") .'>no</option>
                     <option value="1"  '. ($admin ? "selected": "") .'>yes</option></select><br/>
                     <label for="address">address</label>
-                    <input id="address" type="text" name="address" value="'.$address.'"/><br/>
+                    <input id="address" type="text" name="address" value="'.htmlspecialchars($address).'"/><br/>
                     <input type="submit" value="confirm"></form>
                     ');
                 }
@@ -39,7 +39,7 @@
                 if(isset($_POST["id"], $_POST["email"], $_POST["username"], $_POST["address"], $_POST["admin"]))
                     {
                         // TODO add password
-                        header("location: /php-mysxl/storeProject/html/admin.php?Uid=". $_POST["id"]. "&Uemail=".$_POST["email"]."&Uusername=".$_POST["username"]."&Uaddress=".$_POST["address"]."&Uadmin=".$_POST["admin"]);
+                        header("location: /php-mysxl/storeProject/html/admin.php?Uid=". htmlspecialchars($_POST["id"]). "&Uemail=".htmlspecialchars($_POST["email"])."&Uusername=".htmlspecialchars($_POST["username"])."&Uaddress=".htmlspecialchars($_POST["address"])."&Uadmin=".htmlspecialchars($_POST["admin"]));
                     }
                 if(!isset($_GET["editUser"]))
                 {

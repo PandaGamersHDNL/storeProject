@@ -139,7 +139,6 @@ class Database{
 
     public function updateUser(int $id,string $email, string $username, string $address, bool $admin )
     {
-        //TODO password?
         $email = mysqli_real_escape_string($this->link, $email);
         $username = mysqli_real_escape_string($this->link, $username);
         $address = mysqli_real_escape_string($this->link, $address);
@@ -293,16 +292,18 @@ class Database{
     {
         $userID = filter_var($userID, FILTER_VALIDATE_INT);
 
-        $query = "SELECT * FROM orders WHERE payDate is ".($bPayed ? "NOT " : "")." NULL AND userID = $userID;";
+        $query = "SELECT * FROM orders INNER JOIN products on orders.ProductID = products.productID WHERE payDate is ".($bPayed ? "NOT " : "")." NULL AND userID = $userID;";
         $orders = mysqli_query($this->link, $query) or die("get orders for user failed");
         if($orders->num_rows > 0)
             return $orders;
         return false;
     }
 
-    public function delOrder(int $orderID)
+    public function delOrder(int $id)
     {
-        # code...
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+        $query = "DELETE FROM orders WHERE orderID = $id AND payDate IS NULL;";
+        mysqli_query($this->link, $query) or die("deleting order failed");
     }
 
     public function getCartAmount(int $userID)

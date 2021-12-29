@@ -84,7 +84,7 @@
     <?php 
    
             $db = new Database();
-            include_once "user.php";
+            include_once "classes/user.php";
             $dbUsers = $db->getUsers($_SESSION[$products . "Page"]);
             User::printTable($dbUsers);
             //printPage($_SESSION[$users. "Page"], $users);
@@ -94,7 +94,7 @@
         <h2> products</h2>
         <form><label for=""></label>  </from> <button> <a href='/php-mysxl/storeProject/html/editProduct.php?product=0'>add</a></button>
         <?php 
-            include_once("products.php");
+            include_once("classes/products.php");
             $prods = $db->getProducts($_SESSION[$products . "Page"]);
             Products::printTable($prods);
             //add search by name
