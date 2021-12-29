@@ -8,6 +8,23 @@
     <link rel="stylesheet" href="../css/bootstrap/bootstrap.css" />
     <link rel="stylesheet" href="../css/gen.css" /> 
     <title>sop</title>
+    <script>
+        function checkForm()
+        {
+            let list = ["username", "email", "password", "address"];
+            //console.log(document.getElementById("password").value);
+            for(let i of list){
+                let item = document.getElementById(i);
+                let errorText = "fill this in please"
+                if(item.value == "" || item.value == errorText)
+                { 
+                    return false;
+                }
+                console.log(i)
+            }
+            return true;
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -40,21 +57,4 @@ if(isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["password
         </div>
     </div>
 </body>
-<script>
-    function checkForm()
-    {
-        let list = ["username", "email", "password", "address"];
-        //console.log(document.getElementById("password").value);
-        for(let i of list){
-            let item = document.getElementById(i);
-            let errorText = "fill this bitch in"
-            if(item.value == "" || item.value == errorText)
-            { 
-                return false;
-            }
-            console.log(i)
-        }
-        return true;
-    }
-</script>
 </html>

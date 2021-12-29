@@ -39,7 +39,7 @@
                 $orders = $db->getOrders($_SESSION["userID"], false);
                 if($orders != false){
                     $price = Orders::printTable($orders, false);
-                    echo("<p>total: $price</p><button><a href='".$_SERVER["PHP_SELF"]."?pay=1'>pay</a></button>");
+                    echo("<p>total: $price</p><a href='".$_SERVER["PHP_SELF"]."?pay=1'>pay</a>");
                 }else{
                     echo("no items in cart");
                 }

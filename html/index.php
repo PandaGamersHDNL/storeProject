@@ -17,19 +17,19 @@
     </header>
     <div class="container-fluid">
         <div class="homeBox">
-            <h2> filter<h2>
+            <h2> filter</h2>
                 <?php
                     $db = new Database();
                     $cats = $db->getCategories();
                     $boxes = "";
                     while($c = mysqli_fetch_array($cats)){
-                    $boxes = $boxes . '<input type="checkbox" id="category'.$c["categoryID"].'" name="category'.$c["categoryID"].'" value="Bike">
+                    $boxes = $boxes . '<input type="checkbox" id="category'.$c["categoryID"].'" name="category'.$c["categoryID"].'" value="category'.$c["categoryID"].'" />
                     <label for="category'.$c["categoryID"].'"> '.$c["name"].'</label><br>';
                     }
                     
-                    echo("<div><form id='filter'><label for='searchItems'> search:</label><input type='text' id='searchItems' name='searchItems' /><br/>
-                    <label for='min'>min: </label><input type='number' step='0.01' value='0' id='min' name='min'><br/>
-                    <label for='max'>max: </label><input type='number' step='0.01' value='0' id='max' name='max'></div><br/><div><h3>Categories</h3>$boxes</form></div>
+                    echo("<form id='filter'><div><label for='searchItems'> search:</label><input type='text' id='searchItems' name='searchItems' /><br/>
+                    <label for='min'>min: </label><input type='number' step='0.01' value='0' id='min' name='min' /><br/>
+                    <label for='max'>max: </label><input type='number' step='0.01' value='0' id='max' name='max' /></div><br/><div><h3>Categories</h3>$boxes</div>
                     <button onclick='filterItems()'>submit</button></form>");
                 ?>
         </div>

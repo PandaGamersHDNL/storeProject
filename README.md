@@ -2,6 +2,15 @@
 
 This is a store created with for school
 
+## notes
+
+make sure the path for the website is this
+/php-mysxl/storeProject/(all the files)
+
+admin:
+email: beep@beep.be
+pass: beep
+
 ## sql data base
 
     CREATE DATABASE storeDB;

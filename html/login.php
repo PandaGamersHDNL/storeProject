@@ -8,6 +8,22 @@
     <link rel="stylesheet" href="../css/bootstrap/bootstrap.css" />
     <link rel="stylesheet" href="../css/gen.css" /> 
     <title>SOP</title>
+    <script>
+        function checkForm()
+        {
+            let list = ["email", "password"]
+            for(let i of list){
+                let item = document.getElementById(i);
+                let errorText = "fill this in please"
+                if(item.value == "" || item.value == errorText)
+                {
+                    return false;
+                }
+                console.log(i)
+            }
+            return true;
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -20,7 +36,7 @@
                 <label for="email">email</label>
                 <input type="text" name="email" id="email"/><br />
                 <label for="password">password</label>
-                <input type="text" name="password" id="password"/><br />
+                <input type="password" name="password" id="password"/><br />
                 <input type="submit" value="login" />
                 <a href="./signup.php">sign up</a><br />
                 <?php
@@ -38,20 +54,4 @@
         </div>
     </div>
 </body>
-<script>
-    function checkForm()
-    {
-        let list = ["email", "password"]
-        for(let i of list){
-            let item = document.getElementById(i);
-            let errorText = "fill this bitch in"
-            if(item.value == "" || item.value == errorText)
-            {
-                return false;
-            }
-            console.log(i)
-        }
-        return true;
-    }
-</script>
 </html>

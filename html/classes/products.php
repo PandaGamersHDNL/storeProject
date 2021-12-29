@@ -39,6 +39,7 @@
             <p><strong>description:</strong> " . $product["description"] ."</p>
             <p><strong>category:</strong> " . htmlspecialchars(Products::getCategory($product["categoryID"])["name"]) ."</p>
             <p><strong>price:</strong> ". htmlspecialchars($product["price"])."</p>
+            <p><strong>stock:</strong> ". htmlspecialchars($product["stock"])."</p>
             <label for='amount".htmlspecialchars($product["productID"])."'>amount: </label><input type='number' id='amount".htmlspecialchars($product["productID"])."' name='amount".htmlspecialchars($product["productID"])."' value='1' />
             <button onclick='addToCart(".htmlspecialchars($product["productID"]).")'> add to cart </button>
             </div>");

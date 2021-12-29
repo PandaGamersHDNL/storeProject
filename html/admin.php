@@ -92,8 +92,9 @@
     </div>
     <div class="homeBox">
         <h2> products</h2>
-        <form><label for=""></label>  </from> <button> <a href='/php-mysxl/storeProject/html/editProduct.php?product=0'>add</a></button>
+        <a href='/php-mysxl/storeProject/html/editProduct.php?product=0'> add</a>
         <?php 
+        //<form><label for=""></label>  </from> 
             include_once("classes/products.php");
             $prods = $db->getProducts($_SESSION[$products . "Page"]);
             Products::printTable($prods);
@@ -105,9 +106,9 @@
     </div>
     <div class="homeBox">
         <h2> categories</h2>
-        <form><label for=""></label>  </from> <button> <a href='/php-mysxl/storeProject/html/editCategory.php?category=0'>add</a></button>
-
+        <a href='/php-mysxl/storeProject/html/editCategory.php?category=0'>add</a>
         <?php 
+        //<form><label for=""></label>  </from> 
             include_once("classes/products.php");
             $categories = $db->getCategories();
             if($categories != false)

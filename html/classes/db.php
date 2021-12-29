@@ -333,7 +333,6 @@ class Database{
                 mysqli_query($this->link, $query) or die("update product stock failed");
             }
         }
-        //check if the stock is > than the amount -> set curr date + update amount
     }
 
 }
