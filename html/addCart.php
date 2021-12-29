@@ -1,7 +1,7 @@
 <?php
 include_once("classes/session.php");
 include_once("classes/db.php");
-include_once("classes/logger.php")
+include_once("classes/logger.php");
 try{
     if(Session::checkLogin() && isset($_POST["productID"], $_POST["amount"]))
     {

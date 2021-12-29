@@ -10,3 +10,5 @@
 [ Error ][ 2021-12-29 20:07:44 ][ 0 ]: syntax error, unexpected token ")" in file C:\xampp\htdocs\php-mysxl\storeProject\html\classes\db.php on line 322
 [ Error ][ 2021-12-29 20:08:42 ][ 2 ]: Undefined array key "userID" in file C:\xampp\htdocs\php-mysxl\storeProject\html\cart.php on line 39
 [ Error ][ 2021-12-29 20:20:48 ][ 2 ]: Undefined array key "Odel" in file C:\xampp\htdocs\php-mysxl\storeProject\html\cart.php on line 32
+[ Error ][ 2021-12-29 22:42:01 ][ 0 ]: syntax error, unexpected token "}", expecting "," or ";" in file C:\xampp\htdocs\php-mysxl\storeProject\html\classes\db.php on line 333
+[ Error ][ 2021-12-29 22:42:03 ][ 0 ]: syntax error, unexpected token "}", expecting "," or ";" in file C:\xampp\htdocs\php-mysxl\storeProject\html\classes\db.php on line 333

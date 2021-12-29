@@ -316,10 +316,26 @@ class Database{
     public function payCart(int $userID)
     {
         $userID = filter_var($userID, FILTER_VALIDATE_INT);
-        
-        while(false){}
+
+        $query = "select * from orders where userID = $userID AND payDate IS NULL";
+        $orders = mysqli_query($this->link, $query) or die("get order to pay failed");
+
+        while($order = mysqli_fetch_array($orders)){
+            //gets a product every time to make sure we got the right stock
+            $product = $this->getProduct($order["productID"]);
+            if($product["stock"] >= $order["amount"])
+            {
+                $query = "update orders set payDate = CURRENT_TIMESTAMP() where orderID = " . $order["orderID"];
+                mysqli_query($this->link, $query) or die("update orders to pay failed");
+
+                $newStock = $product["stock"] - $order["amount"];
+                $query = "update products set stock = $newStock where productID = ". $product["productID"];
+                mysqli_query($this->link, $query) or die("update product stock failed");
+            }
+        }
         //check if the stock is > than the amount -> set curr date + update amount
     }
+
 }
     
     ?>
