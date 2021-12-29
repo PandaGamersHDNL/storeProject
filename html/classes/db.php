@@ -154,33 +154,31 @@ class Database{
         mysqli_query($this->link, $query) or die("deleting user failed");
     }
 
-    public function updateProduct(int $id,string $name, string $desc,int $category, float $price,int $stock, string $img)
+    public function updateProduct(int $id,string $name, string $desc,int $category, float $price,int $stock)
     {
         $name = mysqli_real_escape_string($this->link, $name);
         $desc = mysqli_real_escape_string($this->link, $desc);
-        $img = mysqli_real_escape_string($this->link, $img);
         $id = filter_var($id, FILTER_VALIDATE_INT);
         $stock = filter_var($stock, FILTER_VALIDATE_INT);
         $category = filter_var($category, FILTER_VALIDATE_INT);
         $price = filter_var($price, FILTER_VALIDATE_FLOAT);
         
 
-        $query =  "UPDATE products SET name = '$name', description = '$desc', categoryID = $category, price = $price, stock = $stock, imagePath = '$img' WHERE productID = $id;";
+        $query =  "UPDATE products SET name = '$name', description = '$desc', categoryID = $category, price = $price, stock = $stock WHERE productID = $id;";
         mysqli_query($this->link, $query) or die("updating product failed");
     }
 
-    public function addProduct(string $name, string $desc, int $category, float $price, int $stock,string $img)
+    public function addProduct(string $name, string $desc, int $category, float $price, int $stock)
     {
         
         $name = mysqli_real_escape_string($this->link, $name);
         $desc = mysqli_real_escape_string($this->link, $desc);
-        $img = mysqli_real_escape_string($this->link, $img);
         $category = filter_var($category, FILTER_VALIDATE_INT);
         $stock = filter_var($stock, FILTER_VALIDATE_INT);
         $price = filter_var($price, FILTER_VALIDATE_FLOAT);
 
-        $query = "INSERT INTO products (name, description, categoryID, stock, price, imagePath)
-        VALUE ('". $name . "', '". $desc . "', " . $category . ", " . $price  . ", ". $stock .", '".$img."')";
+        $query = "INSERT INTO products (name, description, categoryID, stock, price)
+        VALUE ('". $name . "', '". $desc . "', " . $category . ", " . $price  . ", ". $stock .")";
         mysqli_query($this->link, $query) or die("add product failed");
     }
 

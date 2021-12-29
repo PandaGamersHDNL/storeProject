@@ -16,7 +16,7 @@
     <div class="container-fluid">
         <div class="homeBox">
             <?php
-                function form(int $id = 0, string $name = "", string $desc = "", float $price = -1, int $category = 0, int $stock = 0, string $img="" )
+                function form(int $id = 0, string $name = "", string $desc = "", float $price = -1, int $category = 0, int $stock = 0 )
                 {
                     //TODO add cancel button + check fields?
                     $db = new Database();
@@ -38,14 +38,13 @@
                     <label for="price">price</label>
                     <input id="price" type="number" step="0.01" name="price" value="'.htmlspecialchars($price).'"/><br/>
                     <label for="stock">stock: </label><input id="stock" name="stock" type="number" value="' . htmlspecialchars($stock) . '"/><br/>
-                    <label for="img">img path</label><input id="img" name="img" value="'. htmlspecialchars($img). '"><br/>
                     <input type="submit" value="confirm"><br/>
                     </form>');
                 }
 
-                if(isset($_POST["id"], $_POST["name"], $_POST["desc"], $_POST["category"], $_POST["price"], $_POST["stock"],$_POST["img"], $_POST["stock"], $_POST["img"]))
+                if(isset($_POST["id"], $_POST["name"], $_POST["desc"], $_POST["category"], $_POST["price"], $_POST["stock"], $_POST["stock"]))
                     {
-                        header("location: /php-mysxl/storeProject/html/admin.php?Pid=". htmlspecialchars($_POST["id"]). "&Pname=".htmlspecialchars($_POST["name"])."&Pdesc=".htmlspecialchars($_POST["desc"])."&Pcategory=".htmlspecialchars($_POST["category"])."&Pprice=".htmlspecialchars($_POST["price"]). "&Pstock=".htmlspecialchars($_POST["stock"])."&Pimg=".htmlspecialchars($_POST["img"]));
+                        header("location: /php-mysxl/storeProject/html/admin.php?Pid=". htmlspecialchars($_POST["id"]). "&Pname=".htmlspecialchars($_POST["name"])."&Pdesc=".htmlspecialchars($_POST["desc"])."&Pcategory=".htmlspecialchars($_POST["category"])."&Pprice=".htmlspecialchars($_POST["price"]). "&Pstock=".htmlspecialchars($_POST["stock"])));
                     }
                 if(!isset($_GET["product"]))
                 {
@@ -61,11 +60,7 @@
                     $db = new Database();
                     $product = $db->getProduct($_GET["product"]);
                     if($product != false){
-                        $img = $product["imagePath"];
-                        if ($img == null){
-                            $img = "";
-                        }
-                        form($product["productID"], $product["name"], $product["description"], $product["price"], $product["categoryID"], $product["stock"], $img);
+                        form($product["productID"], $product["name"], $product["description"], $product["price"], $product["categoryID"], $product["stock"]);
                     }else
                         echo("<h3>failed to get user</h3>");
                 }

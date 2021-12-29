@@ -47,14 +47,14 @@
             }
         
         //product actions
-            if(isset($_GET["Pid"], $_GET["Pname"], $_GET["Pdesc"], $_GET["Pcategory"], $_GET["Pprice"], $_GET["Pstock"],$_GET["Pimg"]))
+            if(isset($_GET["Pid"], $_GET["Pname"], $_GET["Pdesc"], $_GET["Pcategory"], $_GET["Pprice"], $_GET["Pstock"]))
             {
                 $db = new Database();
                 if($_GET["Pid"] == "unknown")
                 {
-                    $db->addProduct($_GET["Pname"], $_GET["Pdesc"], $_GET["Pcategory"], $_GET["Pprice"], $_GET["Pstock"],$_GET["Pimg"]);
+                    $db->addProduct($_GET["Pname"], $_GET["Pdesc"], $_GET["Pcategory"], $_GET["Pprice"], $_GET["Pstock"]);
                 } else if ($_GET["Pid"] > 0){
-                    $db->updateProduct($_GET["Pid"], $_GET["Pname"], $_GET["Pdesc"], $_GET["Pcategory"], $_GET["Pprice"], $_GET["Pstock"],$_GET["Pimg"]);
+                    $db->updateProduct($_GET["Pid"], $_GET["Pname"], $_GET["Pdesc"], $_GET["Pcategory"], $_GET["Pprice"], $_GET["Pstock"]);
                 }
             }
             if(isset($_GET["Pdel"]) && $_GET["Pdel"] > 0)

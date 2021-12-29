@@ -4,11 +4,11 @@
         {
             //TODO add stock + img
             echo("<table class='users'>");
-            echo("<tr><th>ID</th><th> name </th><th> description</th><th> price </th><th> category </th><th>edit</th><th>del</th></tr> ");
+            echo("<tr><th>ID</th><th> name </th><th> description</th><th> price </th><th> category </th><th>stock</th><th>edit</th><th>del</th></tr> ");
             while($product = mysqli_fetch_array($products)){
                 echo("<tr><th>" . htmlspecialchars($product["productID"]) . "</th><td>" 
                     . (htmlspecialchars($product["name"])) .  "</td><td>". htmlspecialchars($product["description"]) ."</td><td>" . htmlspecialchars($product["price"]) 
-                    . "</td><td>". Products::getCategory($product["categoryID"])["name"] ."</td><td><a href='/php-mysxl/storeProject/html/editProduct.php?product=" . htmlspecialchars($product["productID"]) . "' >edit</a></td> 
+                    . "</td><td>". Products::getCategory($product["categoryID"])["name"] ."</td><td>" . htmlspecialchars($product["stock"]) . "</td><td><a href='/php-mysxl/storeProject/html/editProduct.php?product=" . htmlspecialchars($product["productID"]) . "' >edit</a></td> 
                     <td><a href='" . $_SERVER["PHP_SELF"] . "?Pdel=" . htmlspecialchars($product["productID"]) . "' >del</a></td></tr> "
                     
                 ); 
