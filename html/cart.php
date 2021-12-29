@@ -26,6 +26,11 @@
         {
             $db->delOrder($_GET["Odel"]);
         }
+
+        if(isset($_GET["pay"]))
+        {
+            $db->payCart($_SESSION["userID"]);
+        }
         
         ?>
         <div class="homeBox">
@@ -34,9 +39,10 @@
                 $orders = $db->getOrders($_SESSION["userID"], false);
                 if($orders != false){
                     $price = Orders::printTable($orders, false);
-                    echo("<p>$price</p>");
-                }else
+                    echo("<p>total: $price</p><button><a href='".$_SERVER["PHP_SELF"]."?pay=1'>pay</a></button>");
+                }else{
                     echo("no items in cart");
+                }
               ?>  
         </div>
         <div class="homeBox">

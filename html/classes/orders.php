@@ -1,6 +1,6 @@
 <?php
     class Orders{
-        static public function printTable($orders = null, bool $bPayDate)
+        static public function printTable($orders, bool $bPayDate)
         {
             //TODO make amount changable? update db then (make button next to amount for changing?)
             echo("<table><tr>");

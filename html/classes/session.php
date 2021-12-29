@@ -2,7 +2,9 @@
     class Session{
     static public function checkLogin()
     {
-        @session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         if(isset($_SESSION["username"], $_SESSION["email"], $_SESSION["address"], $_SESSION["userID"]))
             return true;
         return false;
@@ -12,7 +14,9 @@
     static public function setLogin(int $userID, string $username, string $email, string $address)
     {
         //if session is started it will ignore this
-        @session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         $_SESSION["userID"] = $userID;
         $_SESSION["username"] = $username;
         $_SESSION["email"] = $email;

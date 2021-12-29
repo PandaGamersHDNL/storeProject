@@ -20,7 +20,7 @@
     }
 
 
-include_once '/class/logger.php';
+include_once 'classes/logger.php';
 
 function handleErrors($errno, $errMsg, $errFile, $errLine) {
     (new Logger($errno, $errMsg, $errFile, $errLine))->error();

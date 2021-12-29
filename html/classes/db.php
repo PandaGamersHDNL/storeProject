@@ -191,7 +191,7 @@ class Database{
         mysqli_query($this->link, $query) or die("deleting product failed");
     }
 
-    public function filterProducts(float $min = 0, float $max = 0, array $categories, int $page, string $name = "", int $perPage = 100)
+    public function filterProducts( array $categories, int $page,float $min = 0, float $max = 0, string $name = "", int $perPage = 100)
     {
         $name = mysqli_real_escape_string($this->link, $name);
         
@@ -313,6 +313,14 @@ class Database{
         $result = mysqli_query($this->link, $query) or die("add order failed");
         $row = mysqli_fetch_array($result);
         return $row["amount"];
+    }
+
+    public function payCart(int $userID)
+    {
+        $userID = filter_var($userID, FILTER_VALIDATE_INT);
+        
+        while(false){}
+        //check if the stock is > than the amount -> set curr date + update amount
     }
 }
     

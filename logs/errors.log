@@ -1,0 +1,12 @@
+[ Error ][ 2021-12-29 18:56:31 ][ 8192 ]: Required parameter $categories follows optional parameter $min in file C:\xampp\htdocs\php-mysxl\storeProject\html\classes\db.php on line 194
+[ Error ][ 2021-12-29 18:56:35 ][ 8192 ]: Required parameter $categories follows optional parameter $min in file C:\xampp\htdocs\php-mysxl\storeProject\html\classes\db.php on line 194
+[ Error ][ 2021-12-29 18:59:24 ][ 8192 ]: Required parameter $categories follows optional parameter $min in file C:\xampp\htdocs\php-mysxl\storeProject\html\classes\db.php on line 194
+[ Error ][ 2021-12-29 19:01:10 ][ 8192 ]: Required parameter $categories follows optional parameter $min in file C:\xampp\htdocs\php-mysxl\storeProject\html\classes\db.php on line 194
+[ Error ][ 2021-12-29 19:08:31 ][ 8 ]: session_start(): Ignoring session_start() because a session is already active in file C:\xampp\htdocs\php-mysxl\storeProject\html\classes\session.php on line 5
+[ Error ][ 2021-12-29 19:08:55 ][ 8 ]: session_start(): Ignoring session_start() because a session is already active in file C:\xampp\htdocs\php-mysxl\storeProject\html\classes\session.php on line 5
+[ Error ][ 2021-12-29 19:10:12 ][ 8192 ]: Required parameter $bPayDate follows optional parameter $orders in file C:\xampp\htdocs\php-mysxl\storeProject\html\classes\orders.php on line 3
+[ Error ][ 2021-12-29 19:10:13 ][ 8192 ]: Required parameter $bPayDate follows optional parameter $orders in file C:\xampp\htdocs\php-mysxl\storeProject\html\classes\orders.php on line 3
+[ Error ][ 2021-12-29 19:11:24 ][ 2 ]: Undefined array key "userID" in file C:\xampp\htdocs\php-mysxl\storeProject\html\cart.php on line 34
+[ Error ][ 2021-12-29 20:07:44 ][ 0 ]: syntax error, unexpected token ")" in file C:\xampp\htdocs\php-mysxl\storeProject\html\classes\db.php on line 322
+[ Error ][ 2021-12-29 20:08:42 ][ 2 ]: Undefined array key "userID" in file C:\xampp\htdocs\php-mysxl\storeProject\html\cart.php on line 39
+[ Error ][ 2021-12-29 20:20:48 ][ 2 ]: Undefined array key "Odel" in file C:\xampp\htdocs\php-mysxl\storeProject\html\cart.php on line 32

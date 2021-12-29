@@ -21,4 +21,5 @@ class Logger {
         // Log details of error in a file
         error_log($error, 3, self::FILE);
     }
+}
     ?>

@@ -27,7 +27,8 @@
                     <label for="category'.$c["categoryID"].'"> '.$c["name"].'</label><br>';
                     }
                     
-                    echo("<form id='filter'><div><div id='searchItems'> search:<input type='text' /> <label for='min'>min: </label><input type='number' step='0.01' value='0' id='min' name='min'><br/>
+                    echo("<div><form id='filter'><label for='searchItems'> search:</label><input type='text' id='searchItems' name='searchItems' /><br/>
+                    <label for='min'>min: </label><input type='number' step='0.01' value='0' id='min' name='min'><br/>
                     <label for='max'>max: </label><input type='number' step='0.01' value='0' id='max' name='max'></div><br/><div><h3>Categories</h3>$boxes</form></div>
                     <button onclick='filterItems()'>submit</button></form>");
                 ?>
