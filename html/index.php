@@ -26,7 +26,8 @@
                     $boxes = $boxes . '<input type="checkbox" id="category'.$c["categoryID"].'" name="category'.$c["categoryID"].'" value="Bike">
                     <label for="category'.$c["categoryID"].'"> '.$c["name"].'</label><br>';
                     }
-                    echo("<form id='filter'><div><label for='min'>min: </label><input type='number' step='0.01' value='0' id='min' name='min'><br/>
+                    
+                    echo("<form id='filter'><div><div id='searchItems'> search:<input type='text' /> <label for='min'>min: </label><input type='number' step='0.01' value='0' id='min' name='min'><br/>
                     <label for='max'>max: </label><input type='number' step='0.01' value='0' id='max' name='max'></div><br/><div><h3>Categories</h3>$boxes</form></div>
                     <button onclick='filterItems()'>submit</button></form>");
                 ?>

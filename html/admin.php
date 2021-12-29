@@ -108,7 +108,7 @@
         <form><label for=""></label>  </from> <button> <a href='/php-mysxl/storeProject/html/editCategory.php?category=0'>add</a></button>
 
         <?php 
-            include_once("products.php");
+            include_once("classes/products.php");
             $categories = $db->getCategories();
             if($categories != false)
                 Products::categoryTable($categories);

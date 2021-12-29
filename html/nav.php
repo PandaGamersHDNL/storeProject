@@ -19,6 +19,25 @@
         echo("<button href='". $_SERVER["PHP_SELF"]."'>&gt;</button>");
     }
 
+
+include_once '/class/logger.php';
+
+function handleErrors($errno, $errMsg, $errFile, $errLine) {
+    (new Logger($errno, $errMsg, $errFile, $errLine))->error();
+
+    exit();
+}
+
+function handleUncaughtException($e)
+{
+    (new Logger($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine()))->error();
+    exit("An unexpected error occurred.");
+}
+
+set_exception_handler('handleUncaughtException');
+
+set_error_handler('handleErrors');
+
 ?>
 
 <nav>
@@ -26,9 +45,6 @@
         <li><h1><a href="/php-mysxl/storeProject/html/index.php">
             SOP 
         </a></h1>
-        </li>
-        <li>
-            <div id="searchItems"> search:<input type="text" /> </div>
         </li>
         <li id="user">
             <?php 
@@ -50,7 +66,6 @@
             } else{
                 echo('<a href="/php-mysxl/storeProject/html/login.php">login/ signup</a>');
             }
-            //TODO load cart amount (only not payed ones)
         ?>
         </li>
         <li><a href="/php-mysxl/storeProject/html/cart.php" id="cart"> <?php 
