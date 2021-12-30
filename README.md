@@ -37,7 +37,6 @@ pass: beep
         stock int,
         description varchar(255),
         price float,
-        imagePath varchar(255),
         categoryID int not null,
         FOREIGN KEY (categoryID) REFERENCES categories(categoryID),
         PRIMARY KEY (productID)
